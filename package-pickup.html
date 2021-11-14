@@ -1,19 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript">
+<script>
     function checkAddress(id_value){
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function(){
-                if(this.readyState == 4)
-                {
-                    document.getElementById("package_pickup_history_log").innerHTML = this.response;
-                }
-            print(id_value);
-            var query_string = id_value;
-            xhttp.open("GET","get_package_log.php?q="+query_string,true)
-            xhttp().send()
-        }
+        document.cookie="get_package_log.php?q="+id_value;
+            document.getElementById("package_log_view_pane").innerHTML = this.response;
+
     }
 </script>
 <head>
@@ -9537,7 +9529,7 @@
                                     <div class="kv-ee-col-12 kv-ee-align-left">
                                         <div class="kv-ee-section-text kv-ee-text-content"><h2
                                                 class="kv-ee-section-title kv-ee-section-title--md" data-type="text"
-                                                tabindex="0">Recipient Searcher<span data-prop="title"
+                                                tabindex="0" id="Recipient Search Header">Recipient Searcher<span data-prop="title"
                                                                                    class="ck-editable-element"
                                                                                    data-editable="basic"
                                                                                    style="display:none;"></span></h2>
@@ -9546,28 +9538,26 @@
                                 </div>
                                 <div class="kv-ee-row kv-notify-inview kv-ee-from-left">
                                     <div class="kv-ee-col-12">
-                                        <form id="contact-form" data-type="contact">
-                                            <div class="kv-ee-hidden-form-data" data-sectionid="1636841044417"></div>
                                             <div class="kv-ee-form-container ">
                                                 <div class="kv-ee-form-col">
-                                                    <div class="kv-ee-fieldMessage-container">
+                                                    <div>
                                                         <label>ID Swipe </label>
-                                                        <textarea class="kv-ee-form-control" id="fieldMessage"
+                                                        <form id="swipe_id_form">
+                                                            <input type="text"  id="Swipe_Id_Number"
                                                                   ref="package_pickup_id_swipe"
-                                                                  placeholder="" data-namelabel="ID Swipe " required=""
-                                                                  aria-label="ID Swipe "></textarea>
-
-
-                                                        <div class="kv-ee-error-container"></div>
+                                                                  placeholder="Swipe Card"
+                                                                  aria-label="ID Swipe">
+                                                            </input>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="kv-ee-fieldSubscribe-container">
                                                 <label>
-                                                    <input type="checkbox" id="fieldSubscribe" value="false" style=""
+                                                    <input type="checkbox" value="false"
                                                            data-namelabel="Check this box to verify recipient ID. "
                                                            aria-label="Check this box to verify recipient ID. "
-                                                           onclick="checkAddress(fieldMessage.value)">
+                                                           onclick="checkAddress(document.getElementById('swipe_id_form').elements['Swipe_Id_Number'].value)">
                                                     Check this box to verify recipient ID.
                                                 </label>
 
@@ -9586,7 +9576,6 @@
                                                     </div>
                                                 </button>
                                             </div>
-                                        </form>
                                         <div class="kv-ee-contact-form-success">
                                             <div class="kv-ee-success-close">
                                                 <i class="fa fa-close"></i>
@@ -9640,12 +9629,13 @@
                                                             class="kv-ee-section-title kv-ee-section-title--lg"
                                                             data-type="text" tabindex="0">Packages Received&nbsp;<span
                                                             data-prop="title" class="ck-editable-element"
+
                                                             data-editable="basic" style="display:none;"></span></h2>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="kv-ee-lines"></div>
-                                                <div id="package_pickup_history_log"></div>
+                                                <div id="package_log_view_pane"></div>
                                             <div class="kv-ee-lines"></div>
                                         </div>
                                     </div>
